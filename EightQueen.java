@@ -30,14 +30,14 @@ public class EightQueen extends Application {
   /** Check if a queen can be placed at row i and column j */
   private boolean isValid(int row, int column) {
     for (int i = 1; i <= row; i++)
-      if (queens[row - i] == column // Check column
-        || queens[row - i] == column - i // Check upleft diagonal
-        || queens[row - i] == column + i) // Check upright diagonal
-        return false; // There is a conflict
-    return true; // No conflict
+      if (queens[row - i] == column        // Check column
+        || queens[row - i] == column - i   // Check upleft diagonal
+        || queens[row - i] == column + i)  // Check upright diagonal
+        return false;   // There is a conflict
+    return true;        // No conflict
   }
 
-   //Search for a solution
+    // Search for a solution
   private boolean search(int row) {
     if (row == SIZE)
       return true; // A solution found to place 8th queens in 8th rows
