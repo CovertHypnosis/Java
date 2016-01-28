@@ -36,6 +36,7 @@ public class Histogram extends Application {
 		borderPane.setTop(lblStatus);
 		BorderPane.setAlignment(lblStatus, Pos.CENTER);
 		
+		// Create a scene, place it in the stage and display
 		Scene scene = new Scene(borderPane, 400, 250);
 		primaryStage.setTitle("Histogram");
 		primaryStage.setScene(scene);
@@ -152,6 +153,7 @@ public class Histogram extends Application {
 		public void repaint() {
 			int max = numbers[0];
 			
+			// Find maximum number
 			for (int i = 1; i < numbers.length; i++) {
 				if (max < numbers[i])
 					max = numbers[i];
