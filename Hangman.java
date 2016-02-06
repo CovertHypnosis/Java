@@ -148,30 +148,31 @@ public class Hangman extends Application {
 		}
 		
 		private void animateHang() {
-            head.translateXProperty().addListener((observable, oldValue, newValue) -> {
-                body.setTranslateX(newValue.doubleValue());
-                hand1.setTranslateX(newValue.doubleValue());
-                hand2.setTranslateX(newValue.doubleValue());
-                leg1.setTranslateX(newValue.doubleValue());
-                leg2.setTranslateX(newValue.doubleValue());
-            });
+        		 head.translateXProperty().addListener((observable, oldValue, newValue) -> {
+                	 	body.setTranslateX(newValue.doubleValue());
+        			hand1.setTranslateX(newValue.doubleValue());
+                		hand2.setTranslateX(newValue.doubleValue());
+                		leg1.setTranslateX(newValue.doubleValue());
+        	    		leg2.setTranslateX(newValue.doubleValue());
+            	});
 
-            head.translateYProperty().addListener((observable, oldValue, newValue) -> {
-                body.setTranslateY(newValue.doubleValue());
-                hand1.setTranslateY(newValue.doubleValue());
-                hand2.setTranslateY(newValue.doubleValue());
-                leg1.setTranslateY(newValue.doubleValue());
-                leg2.setTranslateY(newValue.doubleValue());
-            });
+        		 head.translateYProperty().addListener((observable, oldValue, newValue) -> {
+        			 body.setTranslateY(newValue.doubleValue());
+        			 hand1.setTranslateY(newValue.doubleValue());
+        			 hand2.setTranslateY(newValue.doubleValue());
+        			 leg1.setTranslateY(newValue.doubleValue());
+                		 leg2.setTranslateY(newValue.doubleValue());
+        	});
 			
-			Arc arc = new Arc(line3.getEndX(), line3.getEndY() + head.getRadius() - 10, 20, 10, 220, 85);
-            arc.setFill(Color.TRANSPARENT);
-            arc.setStroke(Color.BLACK);
-            ptMove= new PathTransition(Duration.seconds(2), arc, head);
-            ptMove.setCycleCount(Transition.INDEFINITE);
-            ptMove.setAutoReverse(true);
-            ptMove.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-            ptMove.play();
+		Arc arc = new Arc(line3.getEndX(), line3.getEndY() + head.getRadius() - 10, 20, 10, 220, 85);
+            	arc.setFill(Color.TRANSPARENT);
+        	arc.setStroke(Color.BLACK);
+        	ptMove= new PathTransition(Duration.seconds(2), arc, head);
+        	ptMove.setCycleCount(Transition.INDEFINITE);
+            	ptMove.setAutoReverse(true);
+            	ptMove.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            	ptMove.play();
+            	
 		}
 		
 		private void drawHead() {
@@ -292,6 +293,7 @@ public class Hangman extends Application {
 			if (key == KeyCode.ENTER && !isPlaying) {
 				isPlaying = true;
 				startGame();
+				ptMove.stop();
 			} else if (key.isLetterKey()) {
 				guess(key.getName().charAt(0));
 			}
