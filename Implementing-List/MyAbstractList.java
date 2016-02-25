@@ -1,4 +1,4 @@
-public abstract class MyAbstactList<E> implements MyList<E> {
+public abstract class MyAbstractList<E> implements MyList<E> {
 	protected int size = 0;
 	
 	protected MyAbstactList() {}
