@@ -1,0 +1,8 @@
+.employee-table {
+    border-collapse: collapse;
+}
+
+.employee-table td, .employee-table th {
+    padding: 4px;
+    border: 1px solid #CCC;
+}

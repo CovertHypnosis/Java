@@ -1,0 +1,46 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        template="template.xhtml">
+    <ui:param name="pageTitle" value="Employee"/>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="empid" value="#{employeeForm.employeeId}"/>
+            <f:event type="preRenderView" listener="#{editEmployeeController.preRenderViewEvent}"/>
+        </f:metadata>
+
+        <h:form id="frmEmployee">
+            <h:panelGrid columns="3">
+                <p:outputLabel for="employeeId" value="Employee ID"/>
+                <p:inputText id="employeeId" value="#{employeeForm.employee.employeeNo}" readonly="true"/>
+                <p:message for="employeeId"/>
+
+                <p:outputLabel for="firstName" value="First Name"/>
+                <p:inputText id="firstName" value="#{employeeForm.employee.firstName}"/>
+                <p:message for="firstName"/>
+
+                <p:outputLabel for="lastName" value="Last Name"/>
+                <p:inputText id="lastName" value="#{employeeForm.employee.lastName}"/>
+                <p:message for="lastName"/>
+
+                <p:outputLabel for="dateOfBirth" value="Date of Birth"/>
+                <p:inputText id="dateOfBirth" value="#{employeeForm.employee.dateOfBirth}">
+                    <f:convertDateTime pattern="MM/dd/yyyy"/>
+                </p:inputText>
+                <p:message for="dateOfBirth"/>
+
+                <p:outputLabel for="hireDate" value="Hire Date"/>
+                <p:inputText id="hireDate" value="#{employeeForm.employee.hireDate}">
+                    <f:convertDateTime pattern="MM/dd/yyyy"/>
+                </p:inputText>
+                <p:message for="hireDate"/>
+
+                <p:commandButton action="#{editEmployeeController.save}" value="Save"/>
+                <p:button outcome="cancel" value="Cancel"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

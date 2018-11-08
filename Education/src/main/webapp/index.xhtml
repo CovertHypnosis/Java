@@ -1,0 +1,61 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        template="template.xhtml">
+    <ui:param name="pageTitle" value="Example"/>
+    <ui:define name="content">
+        <p:growl id="growl" globalOnly="true"/>
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel for="hiredAfter" value="Hired After:"/>
+                <p:calendar id="hiredAfter" value="#{searchForm.hiredAfter}"
+                            pattern="MM/dd/yyyy" navigator="true"
+                            converterMessage="Please enter a valid date. For example 4/15/2015.">
+                    <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    <p:ajax event="dateSelect" listener="#{employeeDatatable.refresh}" update=":frmEmployees @form"/>
+                </p:calendar>
+                <p:message for="hiredAfter"/>
+                <p:button value="New ..." outcome="employee"/>
+            </h:panelGrid>
+        </h:form>
+        <h:form id="frmEmployees">
+            <p:dataTable value="#{employeeDatatable.values}" var="emp" styleClass="employee-table"
+                         rows="10" paginator="true">
+                <p:column sortBy="#{emp.employeeNo}">
+                    <f:facet name="header">Employee No</f:facet>
+                    <h:link value="#{emp.employeeNo}" outcome="employee">
+                        <f:param name="empid" value="#{emp.employeeNo}"/>
+                    </h:link>
+                </p:column>
+                <p:column sortBy="#{emp.firstName}">
+                    <f:facet name="header">First Name</f:facet>
+                    #{emp.firstName}
+                </p:column>
+                <p:column sortBy="#{emp.lastName}">
+                    <f:facet name="header">Last Name</f:facet>
+                    #{emp.lastName}
+                </p:column>
+                <p:column sortBy="#{emp.dateOfBirth}">
+                    <f:facet name="header">Date of Birth</f:facet>
+                    <h:outputText value="#{emp.dateOfBirth}">
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{emp.hireDate}">
+                    <f:facet name="header">Hire Date</f:facet>
+                    <h:outputText value="#{emp.hireDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </h:outputText>
+                </p:column>
+                <p:column width="80" style="text-align: center">
+                    <p:commandButton action="#{employeeController.remove(emp)}" icon="ui-icon-trash"
+                                     update="@form growl"
+                                     style="width: 24px; height: 24px"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
