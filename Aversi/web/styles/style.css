@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+form {
+    border: 2px red;
+    display: inline-block;
+}
+
+h2 {
+    margin-bottom: 100px;
+}
+
+.name {
+    font-size: 50px;
+    margin-left: 60px;
+    color: red;
+}
+
+input {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.please_login {
+    margin-top: 10px;
+}
+
+#register {
+    border: 1px #f1b0b7;
+}
