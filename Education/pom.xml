@@ -24,7 +24,7 @@
         <dependency>
           <groupId>org.wildfly</groupId>
           <artifactId>wildfly-parent</artifactId>
-          <version>14.0.1.Final</version>
+          <version>23.0.2.Final</version>
           <type>pom</type>
           <scope>import</scope>
         </dependency>
